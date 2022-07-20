@@ -53,6 +53,15 @@ public class RangerTest {
         assertEquals(true, Ranger.all().get(1).equals(secondRanger));
     }
 
+    @Test
+    public void find_returnsRangerWithSameId_secondRanger() {
+        Ranger firstRanger = new Ranger("mathew", "mathew123");
+        firstRanger.save();
+        Ranger secondRanger = new Ranger("Mark", "mark123");
+        secondRanger.save();
+        assertEquals(Ranger.find(secondRanger.getId()), secondRanger);
+    }
+
 
 
 }
