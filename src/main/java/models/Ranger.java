@@ -1,9 +1,15 @@
 package models;
 
+import org.sql2o.Connection;
+
+import java.util.List;
+
 public class Ranger {
         private String name;
 
         private String username;
+
+        private int id;
 
     public Ranger(String name,String username){
         this.name = name;
@@ -28,4 +34,24 @@ public class Ranger {
                     this.getUsername().equals(newRanger.getUsername());
         }
     }
+
+    public void save() {
+        try(Connection con = DB.sql2o.open()) {
+            String sql = "INSERT INTO ranger (name, username) VALUES (:name, :username)";
+            this.id = (int) con.createQuery(sql, true)
+                    .addParameter("name", this.name)
+                    .addParameter("username", this.username)
+                    .executeUpdate()
+                    .getKey();
+        }
+    }
+
+    public static List<Ranger> all() {
+        String sql = "SELECT * FROM ranger";
+        try(Connection con = DB.sql2o.open()) {
+            return con.createQuery(sql).executeAndFetch(Ranger.class);
+        }
+    }
+
+
 }
