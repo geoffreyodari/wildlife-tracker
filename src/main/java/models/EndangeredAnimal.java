@@ -26,7 +26,7 @@ public class EndangeredAnimal extends Animal {
 
 
     public static List<EndangeredAnimal> all() {
-        String sql = "SELECT * FROM animals";
+        String sql = "SELECT * FROM animals where type='Endangered'";
         try(Connection con = DB.sql2o.open()) {
             return con.createQuery(sql)
                     .throwOnMappingFailure(false)
