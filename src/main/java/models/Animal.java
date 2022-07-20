@@ -42,25 +42,8 @@ public abstract class Animal {
         }
     }
 
-    public static List<Animal> all() {
-        String sql = "SELECT * FROM animals";
-        try(Connection con = DB.sql2o.open()) {
-            return con.createQuery(sql)
-                    .throwOnMappingFailure(false)
-                    .executeAndFetch(Animal.class);
-        }
-    }
 
-    public static Animal find(int id) {
-        try(Connection con = DB.sql2o.open()) {
-            String sql = "SELECT * FROM animals where id=:id";
-            Animal animal = con.createQuery(sql)
-                    .addParameter("id", id)
-                    .throwOnMappingFailure(false)
-                    .executeAndFetchFirst(Animal.class);
-            return animal;
-        }
-    }
+
 
     public Integer getId() {
         return id;
