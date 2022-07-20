@@ -68,6 +68,7 @@ public class Ranger {
             String sql = "SELECT * FROM animals where rangerId=:id";
             return con.createQuery(sql)
                     .addParameter("id", this.id)
+                    .throwOnMappingFailure(false)
                     .executeAndFetch(Animal.class);
         }
     }

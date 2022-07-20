@@ -4,7 +4,7 @@ import org.sql2o.Connection;
 
 import java.util.List;
 
-public class Animal {
+public abstract class Animal {
     private Integer id;
     private String name;
     private Integer  rangerId;
@@ -36,6 +36,7 @@ public class Animal {
             this.id = (int) con.createQuery(sql, true)
                     .addParameter("name", this.name)
                     .addParameter("rangerId", this.rangerId)
+                    .throwOnMappingFailure(false)
                     .executeUpdate()
                     .getKey();
         }
@@ -44,7 +45,9 @@ public class Animal {
     public static List<Animal> all() {
         String sql = "SELECT * FROM animals";
         try(Connection con = DB.sql2o.open()) {
-            return con.createQuery(sql).executeAndFetch(Animal.class);
+            return con.createQuery(sql)
+                    .throwOnMappingFailure(false)
+                    .executeAndFetch(Animal.class);
         }
     }
 
@@ -53,6 +56,7 @@ public class Animal {
             String sql = "SELECT * FROM animals where id=:id";
             Animal animal = con.createQuery(sql)
                     .addParameter("id", id)
+                    .throwOnMappingFailure(false)
                     .executeAndFetchFirst(Animal.class);
             return animal;
         }
