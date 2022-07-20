@@ -26,9 +26,43 @@ public class AnimalTest {
     }
 
     @Test
-    public void equals_returnsTrueIfNameAndPersonIdAreSame_true() {
+    public void equals_returnsTrueIfNameAndRangerIdAreSame_true() {
         Animal testAnimal = new Animal("lion", 1);
         Animal anotherAnimal = new Animal("lion", 1);
         assertTrue(testAnimal.equals(anotherAnimal));
+    }
+
+    @Test
+    public void save_returnsTrueIfDescriptionsAretheSame() {
+        Animal testAnimal= new Animal("lion", 1);
+        testAnimal.save();
+        assertTrue(Animal.all().get(0).equals(testAnimal));
+    }
+
+    @Test
+    public void save_assignsIdAnimal() {
+        Animal testAnimal = new Animal("lion", 1);
+        testAnimal.save();
+        Animal savedAnimal = Animal.all().get(0);
+        assertEquals(savedAnimal.getId(), testAnimal.getId());
+    }
+
+    @Test
+    public void all_returnsAllInstancesOfAnimal_true() {
+        Animal firstAnimal= new Animal("lion", 1);
+        firstAnimal.save();
+        Animal secondAnimal= new Animal("lion", 1);
+        secondAnimal.save();
+        assertEquals(true, Animal.all().get(0).equals(firstAnimal));
+        assertEquals(true, Animal.all().get(1).equals(secondAnimal));
+    }
+
+    @Test
+    public void find_returnsAnimalWithSameId_secondAnimal() {
+        Animal firstAnimal= new Animal("lion", 1);
+        firstAnimal.save();
+        Animal secondAnimal = new Animal("Elephant", 3);
+        secondAnimal.save();
+        assertEquals(Animal.find(secondAnimal.getId()), secondAnimal);
     }
 }
