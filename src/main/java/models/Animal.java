@@ -1,6 +1,6 @@
 package models;
 
-public abstract class Animal {
+public class Animal {
     private Integer id;
     private String name;
     public Animal(String name){
