@@ -2,6 +2,9 @@ package models;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+
+import java.util.Arrays;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -65,4 +68,28 @@ public class AnimalTest {
         secondAnimal.save();
         assertEquals(Animal.find(secondAnimal.getId()), secondAnimal);
     }
+
+    @Test
+    public void save_savesAnimalIdIntoDB_true() {
+        Ranger testRanger = new Ranger("Geoffrey", "geoffrey123");
+        testRanger.save();
+        Animal testAnimal = new Animal("Elephant", testRanger.getId());
+        testAnimal.save();
+        Animal savedAnimal = Animal.find(testAnimal.getId());
+        assertEquals(savedAnimal.getRangerId(), testRanger.getId());
+    }
+
+    @Test
+    public void getAnimals_retrievesAllAnimalsFromDB_animalsList() {
+        Ranger testRanger = new Ranger("Geoffrey", "geoffrey123");
+        testRanger.save();
+        Animal firstAnimal = new Animal("lion", testRanger.getId());
+        firstAnimal.save();
+        Animal secondAnimal = new Animal("Elephant", testRanger.getId());
+        secondAnimal.save();
+        Animal[] animals = new Animal[] { firstAnimal, secondAnimal };
+        assertTrue(testRanger.getAnimals().containsAll(Arrays.asList(animals)));
+    }
+
+
 }
