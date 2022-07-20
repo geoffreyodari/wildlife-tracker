@@ -65,4 +65,16 @@ public class AnimalTest {
         secondAnimal.save();
         assertEquals(Animal.find(secondAnimal.getId()), secondAnimal);
     }
+
+    @Test
+    public void save_savesAnimalIdIntoDB_true() {
+        Ranger testRanger = new Ranger("Geoffrey", "geoffrey123");
+        testRanger.save();
+        Animal testAnimal = new Animal("Elephant", testRanger.getId());
+        testAnimal.save();
+        Animal savedAnimal = Animal.find(testAnimal.getId());
+        assertEquals(savedAnimal.getRangerId(), testRanger.getId());
+    }
+
+
 }
