@@ -53,15 +53,7 @@ public class Ranger {
         }
     }
 
-    public static Ranger find(int id) {
-        try(Connection con = DB.sql2o.open()) {
-            String sql = "SELECT * FROM ranger where id=:id";
-            Ranger person = con.createQuery(sql)
-                    .addParameter("id", id)
-                    .executeAndFetchFirst(Ranger.class);
-            return person;
-        }
-    }
+
 
 
 
