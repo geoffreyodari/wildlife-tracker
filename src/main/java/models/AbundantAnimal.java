@@ -9,11 +9,13 @@ public class AbundantAnimal extends Animal{
 
     public AbundantAnimal(String name,int rangerId){
         super(name,rangerId);
-        String type = DATABASE_TYPE;
+        type = DATABASE_TYPE;
     }
 
+
+
     public static List<AbundantAnimal> all() {
-        String sql = "SELECT * FROM animals";
+        String sql = "SELECT * FROM animals Where type='Abundant'";
         try(Connection con = DB.sql2o.open()) {
             return con.createQuery(sql)
                     .throwOnMappingFailure(false)

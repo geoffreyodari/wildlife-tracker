@@ -13,7 +13,7 @@ public class EndangeredAnimal extends Animal {
         super(name,rangerId);
         this.HEALTH =health;
         this.AGE = age;
-        String type = DATABASE_TYPE;
+        type = DATABASE_TYPE;
     }
 
     public String getAge() {
@@ -24,6 +24,21 @@ public class EndangeredAnimal extends Animal {
         return HEALTH;
     }
 
+    @Override
+    public void save() {
+        try(Connection con = DB.sql2o.open()) {
+            String sql = "INSERT INTO animals (name, rangerId,health,age, type) VALUES (:name, :rangerId, :health,:age,:type)";
+            this.id = (int) con.createQuery(sql, true)
+                    .addParameter("name", this.name)
+                    .addParameter("rangerId", this.rangerId)
+                    .addParameter("health", this.HEALTH)
+                    .addParameter("age", this.AGE)
+                    .addParameter("type", this.type)
+                    .throwOnMappingFailure(false)
+                    .executeUpdate()
+                    .getKey();
+        }
+    }
 
     public static List<EndangeredAnimal> all() {
         String sql = "SELECT * FROM animals where type='Endangered'";
