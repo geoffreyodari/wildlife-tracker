@@ -15,8 +15,10 @@ public class DatabaseRule implements AfterEachCallback, BeforeEachCallback {
         try(Connection con = DB.sql2o.open()) {
             String deleteRangerQuery = "DELETE FROM ranger *;";
             String deleteAnimalsQuery = "DELETE FROM animals *;";
+            String deleteSightingsQuery = "DELETE FROM sightings *;";
             con.createQuery(deleteRangerQuery).executeUpdate();
             con.createQuery(deleteAnimalsQuery).executeUpdate();
+            con.createQuery(deleteSightingsQuery).executeUpdate();
         }
     }
 }

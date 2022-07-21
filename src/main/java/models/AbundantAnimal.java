@@ -4,15 +4,31 @@ import org.sql2o.Connection;
 
 import java.util.List;
 
-public class AbundantAnimal extends Animal{
+public class AbundantAnimal extends Animal implements DatabaseManagement{
     private static final String DATABASE_TYPE = "Abundant";
 
-    public AbundantAnimal(String name,int rangerId){
-        super(name,rangerId);
+    public AbundantAnimal(String name,String rangerName){
+        super(name,rangerName);
         type = DATABASE_TYPE;
     }
 
 
+
+
+
+    @Override
+    public void save() {
+        try(Connection con = DB.sql2o.open()) {
+            String sql = "INSERT INTO animals (name, rangerName, type) VALUES (:name, :rangerName, :type)";
+            this.id = (int) con.createQuery(sql, true)
+                    .addParameter("name", this.name)
+                    .addParameter("rangerName", this.rangerName)
+                    .addParameter("type", this.type)
+                    .throwOnMappingFailure(false)
+                    .executeUpdate()
+                    .getKey();
+        }
+    }
 
     public static List<AbundantAnimal> all() {
         String sql = "SELECT * FROM animals Where type='Abundant'";
@@ -33,4 +49,7 @@ public class AbundantAnimal extends Animal{
             return animal;
         }
     }
+
+
+
 }

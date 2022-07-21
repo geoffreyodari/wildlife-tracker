@@ -7,49 +7,33 @@ import java.util.List;
 public abstract class Animal {
     public Integer id;
     public String name;
-    public Integer  rangerId;
+    public String  rangerName;
 
     public String type;
-    public Animal(String name,int rangerId){
+    public Animal(String name,String rangerName){
         this.name = name;
-        this.rangerId =rangerId;
+        this.rangerName =rangerName;
     }
 
     public String getName() {
         return name;
     }
 
-    public Integer getRangerId() {
-        return rangerId;
+    public String getRangerName() {
+        return rangerName;
     }
-    @Override
+
+    public Integer getId() {
+        return id;
+    }
+
     public boolean equals(Object otherAnimal){
         if(!(otherAnimal instanceof Animal)){
             return false;
         }else{
             Animal newAnimal = (Animal) otherAnimal;
-            return this.getName().equals(newAnimal.getName())&&this.getRangerId().equals(newAnimal.getRangerId());
+            return this.getName().equals(newAnimal.getName())&&this.getRangerName().equals(newAnimal.getRangerName());
         }
-    }
-
-    public void save() {
-        try(Connection con = DB.sql2o.open()) {
-            String sql = "INSERT INTO animals (name, rangerId, type) VALUES (:name, :rangerId, :type)";
-            this.id = (int) con.createQuery(sql, true)
-                    .addParameter("name", this.name)
-                    .addParameter("rangerId", this.rangerId)
-                    .addParameter("type", this.type)
-                    .throwOnMappingFailure(false)
-                    .executeUpdate()
-                    .getKey();
-        }
-    }
-
-
-
-
-    public Integer getId() {
-        return id;
     }
 
 
