@@ -9,8 +9,8 @@ public class EndangeredAnimal extends Animal implements DatabaseManagement {
     private final String AGE;
 
     public static final String DATABASE_TYPE = "Endangered";
-    public EndangeredAnimal(String name,int rangerId,String health,String age){
-        super(name,rangerId);
+    public EndangeredAnimal(String name,String rangerName,String health,String age){
+        super(name,rangerName);
         this.HEALTH =health;
         this.AGE = age;
         type = DATABASE_TYPE;
@@ -24,13 +24,16 @@ public class EndangeredAnimal extends Animal implements DatabaseManagement {
         return HEALTH;
     }
 
+
+
+
     @Override
     public void save() {
         try(Connection con = DB.sql2o.open()) {
-            String sql = "INSERT INTO animals (name, rangerId,health,age, type) VALUES (:name, :rangerId, :health,:age,:type)";
+            String sql = "INSERT INTO animals (name, rangerName,health,age, type) VALUES (:name, :rangerName, :health,:age,:type)";
             this.id = (int) con.createQuery(sql, true)
                     .addParameter("name", this.name)
-                    .addParameter("rangerId", this.rangerId)
+                    .addParameter("rangerName", this.rangerName)
                     .addParameter("health", this.HEALTH)
                     .addParameter("age", this.AGE)
                     .addParameter("type", this.type)

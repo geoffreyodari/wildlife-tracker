@@ -7,30 +7,22 @@ import java.util.List;
 public class AbundantAnimal extends Animal implements DatabaseManagement{
     private static final String DATABASE_TYPE = "Abundant";
 
-    public AbundantAnimal(String name,int rangerId){
-        super(name,rangerId);
+    public AbundantAnimal(String name,String rangerName){
+        super(name,rangerName);
         type = DATABASE_TYPE;
     }
 
-    @Override
-    public boolean equals(Object otherAnimal){
-        if(!(otherAnimal instanceof Animal)){
-            return false;
-        }else{
-            AbundantAnimal newAnimal = (AbundantAnimal) otherAnimal;
-            return this.getName().equals(newAnimal.getName())&&this.getRangerId().equals(newAnimal.getRangerId());
-        }
-    }
+
 
 
 
     @Override
     public void save() {
         try(Connection con = DB.sql2o.open()) {
-            String sql = "INSERT INTO animals (name, rangerId, type) VALUES (:name, :rangerId, :type)";
+            String sql = "INSERT INTO animals (name, rangerName, type) VALUES (:name, :rangerName, :type)";
             this.id = (int) con.createQuery(sql, true)
                     .addParameter("name", this.name)
-                    .addParameter("rangerId", this.rangerId)
+                    .addParameter("rangerName", this.rangerName)
                     .addParameter("type", this.type)
                     .throwOnMappingFailure(false)
                     .executeUpdate()
@@ -57,4 +49,7 @@ public class AbundantAnimal extends Animal implements DatabaseManagement{
             return animal;
         }
     }
+
+
+
 }

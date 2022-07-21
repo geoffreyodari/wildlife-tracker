@@ -9,6 +9,8 @@ public class Sightings {
      private String rangerName;
      private String location;
      private Timestamp timespotted;
+
+     private String animalName;
      private int id;
 
     public Sightings(int animalId,String rangerName,String location){
@@ -17,8 +19,12 @@ public class Sightings {
         this.location = location;
     }
 
-    public Integer getRangerId() {
-        return rangerId;
+    public String getRangerName() {
+        return rangerName;
+    }
+
+    public String getAnimalName() {
+        return animalName;
     }
 
     public Integer getAnimalId() {
@@ -37,7 +43,7 @@ public class Sightings {
 
     public static Sightings find(int id) {
         try(Connection con = DB.sql2o.open()) {
-            String sql = "SELECT * FROM sightings  where animalId=:animalId";
+            String sql = "SELECT * FROM sightings WHERE animalId=:animalId";
             Sightings sighting = con.createQuery(sql)
                     .addParameter("animalId", id)
                     .throwOnMappingFailure(false)
