@@ -3,6 +3,11 @@ package models;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 
+import java.sql.Date;
+import java.time.LocalTime;
+import java.util.*;
+import java.sql.Timestamp;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -31,6 +36,17 @@ public class SightingsTest {
         Sightings newSighting = new Sightings(1,2,"Third quadrant");
         assertEquals("Third quadrant",newSighting.getLocation());
     }
+
+    @Test
+    public void find_returnsAnimalWithSameId_secondAnimal() {
+        Sightings firstSighting = new Sightings(1,2,"Third quadrant");
+        firstSighting.save();
+        Timestamp rightNow = new Timestamp(new Date(System.currentTimeMillis()).getTime());
+        Sightings secondSighting = new Sightings(1,2,"Third quadrant");
+        assertEquals(Sightings.find(secondSighting.getAnimalId()).getTimeSpotted().getDate(), rightNow.getDate());
+    }
+
+
 
 
 
