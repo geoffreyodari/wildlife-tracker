@@ -2,21 +2,18 @@ package models;
 
 import org.sql2o.Connection;
 
-import java.sql.Date;
 import java.sql.Timestamp;
 
 public class Sightings {
      private Integer animalId;
-     private Integer rangerId;
+     private String rangerName;
      private String location;
-
      private Timestamp timespotted;
-
      private int id;
 
-    public Sightings(int animalId,int rangerId,String location){
+    public Sightings(int animalId,String rangerName,String location){
         this.animalId = animalId;
-        this.rangerId = rangerId;
+        this.rangerName = rangerName;
         this.location = location;
     }
 
@@ -27,6 +24,7 @@ public class Sightings {
     public Integer getAnimalId() {
         return animalId;
     }
+
 
     public String getLocation() {
         return location;
@@ -51,10 +49,10 @@ public class Sightings {
 
     public void save() {
         try(Connection con = DB.sql2o.open()) {
-            String sql = "INSERT INTO sightings  (animalId, rangerId, location, timespotted) VALUES (:animalId, :rangerId,:location ,now())";
+            String sql = "INSERT INTO sightings  (animalId, rangername, location, timespotted) VALUES (:animalId, :rangername,:location ,now())";
             this.id = (int) con.createQuery(sql, true)
                     .addParameter("animalId", this.animalId)
-                    .addParameter("rangerId", this.rangerId)
+                    .addParameter("rangername", this.rangerName)
                     .addParameter("location", this.location)
                     .throwOnMappingFailure(false)
                     .executeUpdate()
