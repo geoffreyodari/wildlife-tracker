@@ -4,7 +4,7 @@ import org.sql2o.Connection;
 
 import java.util.List;
 
-public class EndangeredAnimal extends Animal {
+public class EndangeredAnimal extends Animal implements DatabaseManagement {
     private final String HEALTH;
     private final String AGE;
 
