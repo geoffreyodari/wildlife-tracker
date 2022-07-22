@@ -5,6 +5,7 @@ import spark.ModelAndView;
 import spark.template.handlebars.HandlebarsTemplateEngine;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import static spark.Spark.*;
@@ -42,7 +43,7 @@ public class App {
             Sightings sighting = new Sightings(newEndangeredAnimal.getId(), "geoffrey",location);
             sighting.save();
             Map  <Object,Object> model = new HashMap<>();
-            model.put("endangeredAnimal",newEndangeredAnimal);
+            model.put("endangeredAnimal",EndangeredAnimal.all());
             return new ModelAndView(model, "animals.hbs");
         }, new HandlebarsTemplateEngine());
 
@@ -61,13 +62,32 @@ public class App {
             Sightings sighting = new Sightings(newAbundantAnimal.getId(), "geoffrey",location);
             sighting.save();
             Map  <Object,Object> model = new HashMap<>();
-            model.put("abundantAnimal",newAbundantAnimal);
+            model.put("abundantAnimal",AbundantAnimal.all());
             return new ModelAndView(model, "animals.hbs");
         }, new HandlebarsTemplateEngine());
 
 
         //view animals list
-        get("/view_animals", (request, response) -> "Hello Friend!");
+        get("/view_animals", (request, response) -> {
+            String type = request.queryParams("type");
+            System.out.println(type);
+            Map  <Object,Object> model = new HashMap<>();
+            if(type.equals("endangered")){
+                List allEndangeredAnimals = EndangeredAnimal.all();
+                model.put("type","Endangered");
+                model.put("animals",allEndangeredAnimals);
+                return new ModelAndView(model, "animals.hbs");
+            }else if (type.equals("abundant")) {
+                List allAbundantAnimals = AbundantAnimal.all();
+                model.put("type","Abundant");
+                model.put("animals",allAbundantAnimals);
+                return new ModelAndView(model, "animals.hbs");
+            }else{
+                model.put("exception",new Exception("please select a valid type of animal"));
+                return new ModelAndView(model, "animals.hbs");
+            }
+
+        }, new HandlebarsTemplateEngine());
 
 
         //sightings form
