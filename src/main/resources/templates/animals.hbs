@@ -1,29 +1,38 @@
 {{#partial "content"}}
 <section class="row lists-padding">
     <div class="col-8 mx-auto">
-        <h5 class="display-6">Animals</h5>
-        <table class="table">
-        <thead>
-            <tr>
-            <th>id</th>
-            <th>Name</th>
-            <th>Health</th>
-            <th>Age</th>
-            <th>Recorded by</th>
-            </tr>
-        </thead>
-        <tbody>
-            {{#each}}
-                <tr>
-                    <th>{{id}}</th>
-                    <th>{{name}}</th>
-                    <th>{{#if health}}{{health}}{{else}}-{{/if}}</th>
-                    <th>{{#if age}}{{age}}{{else}}-{{/if}}</th>
-                    <th>{{rangerName}}</th>
-                </tr>
-            {{/each}}
-        </tbody>
-        </table>
+        {{#if exception}}
+            <h5 class="display-6">{{exception}} {{type}}</h5>
+        {{else}}
+            <h5 class="display-6">{{type}} Animals</h5>
+            {{#if animals}}
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>id</th>
+                        <th>Name</th>
+                        <th>Health</th>
+                        <th>Age</th>
+                        <th>Recorded by</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {{#each animals}}
+                        <tr>
+                            <td>{{id}}</td>
+                            <td>{{name}}</td>
+                            <td>{{#if health}}{{health}}{{else}}-{{/if}}</td>
+                            <td>{{#if age}}{{age}}{{else}}-{{/if}}</td>
+                            <td>{{rangerName}}</td>
+                        </tr>
+                    {{/each}}
+                    </tbody>
+                </table>
+            {{else}}
+                No {{type}} found
+            {{/if}}
+        {{/if}}
+
     </div> 
 </section>
 {{/partial}}
