@@ -1,7 +1,9 @@
+import models.EndangeredAnimal;
 import spark.ModelAndView;
 import spark.template.handlebars.HandlebarsTemplateEngine;
 
 import java.util.HashMap;
+import java.util.Map;
 
 import static spark.Spark.*;
 public class App {
@@ -29,7 +31,14 @@ public class App {
 
         //add endangered species
         post("/new_endangered_animal", (request, response) -> {
-            return new ModelAndView(new HashMap(), "endangered_animal_form.hbs");
+            String name =  request.queryParams("name");
+            String age = request.queryParams("age");
+            String health = request.queryParams("health");
+            EndangeredAnimal newEndangeredAnimal = new EndangeredAnimal(name,"geoffrey",health,age);
+            newEndangeredAnimal.save();
+            Map  <Object,Object> model = new HashMap<>();
+            model.put("endangeredAnimal",newEndangeredAnimal);
+            return new ModelAndView(model, "endangered_animal_form.hbs");
         }, new HandlebarsTemplateEngine());
 
 
