@@ -1,3 +1,4 @@
+import models.AbundantAnimal;
 import models.EndangeredAnimal;
 import spark.ModelAndView;
 import spark.template.handlebars.HandlebarsTemplateEngine;
@@ -49,7 +50,12 @@ public class App {
 
         //add abundant species
         post("/new_abundant_animal", (request, response) -> {
-            return new ModelAndView(new HashMap(), "abundant_animal_form.hbs");
+            String name =  request.queryParams("name");
+            AbundantAnimal newAbundantAnimal = new AbundantAnimal(name,"geoffrey");
+            newAbundantAnimal.save();
+            Map  <Object,Object> model = new HashMap<>();
+            model.put("abundantAnimal",newAbundantAnimal);
+            return new ModelAndView(model, "abundant_animal_form.hbs");
         }, new HandlebarsTemplateEngine());
 
 
