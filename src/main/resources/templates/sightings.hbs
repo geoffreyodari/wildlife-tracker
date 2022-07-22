@@ -1,0 +1,40 @@
+{{#partial "content"}}
+  <section class="row lists-padding">
+    <div class="col-8 mx-auto">
+      <h5 class="display-6">Sightings</h5>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>id</th>
+            <th>Location</th>
+            <th>Timestamp</th>
+            <th>Recorded by</th>
+          </tr>
+        </thead>
+        <tbody>
+          {{#Each sighting}}
+          <tr>
+            <td>{{id}}</td>
+            <td>{{location}}</td>
+            <td>{{timestamp}}</td>
+            <td>{{rangername}}</td>
+          </tr>
+          {{/Each}}
+          <tr>
+            <td>1</td>
+            <td>3rd Quadrant</td>
+            <td>3:00pm</td>
+            <td>Mark</td>
+          </tr>
+          <tr>
+            <td>1</td>
+            <td>3rd Quadrant</td>
+            <td>6:00pm</td>
+            <td>Mathew</td>
+          </tr>
+        </tbody>
+      </table>
+    </div> 
+</section>
+{{/partial}}
+{{> layout.hbs}}
