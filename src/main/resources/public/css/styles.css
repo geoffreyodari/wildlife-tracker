@@ -1,0 +1,33 @@
+.bg-wildlife{
+    background: #d1bd92;
+}
+
+table{
+    background: #fdfcec;
+}
+thead{
+    background: #d1bd9271;
+    
+}
+
+.btn-wildlife{
+    background: #d1bd9271;
+}
+
+.form-control{
+    border:1px solid #d1bd92;
+}
+.lists-padding{
+    padding-top: 80px;
+}
+
+
+.icon a{
+    color:#5a4008f6;
+    text-decoration: none;
+}
+.icon-img{
+    height: 150px;
+    display:block;
+    margin: auto;
+}
