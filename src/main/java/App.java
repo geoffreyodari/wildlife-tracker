@@ -1,5 +1,6 @@
 import models.AbundantAnimal;
 import models.EndangeredAnimal;
+import models.Sightings;
 import spark.ModelAndView;
 import spark.template.handlebars.HandlebarsTemplateEngine;
 
@@ -35,11 +36,14 @@ public class App {
             String name =  request.queryParams("name");
             String age = request.queryParams("age");
             String health = request.queryParams("health");
+            String location = request.queryParams("location");
             EndangeredAnimal newEndangeredAnimal = new EndangeredAnimal(name,"geoffrey",health,age);
             newEndangeredAnimal.save();
+            Sightings sighting = new Sightings(newEndangeredAnimal.getId(), "geoffrey",location);
+            sighting.save();
             Map  <Object,Object> model = new HashMap<>();
             model.put("endangeredAnimal",newEndangeredAnimal);
-            return new ModelAndView(model, "endangered_animal_form.hbs");
+            return new ModelAndView(model, "animals.hbs");
         }, new HandlebarsTemplateEngine());
 
 
@@ -51,11 +55,14 @@ public class App {
         //add abundant species
         post("/new_abundant_animal", (request, response) -> {
             String name =  request.queryParams("name");
+            String location = request.queryParams("location");
             AbundantAnimal newAbundantAnimal = new AbundantAnimal(name,"geoffrey");
             newAbundantAnimal.save();
+            Sightings sighting = new Sightings(newAbundantAnimal.getId(), "geoffrey",location);
+            sighting.save();
             Map  <Object,Object> model = new HashMap<>();
             model.put("abundantAnimal",newAbundantAnimal);
-            return new ModelAndView(model, "abundant_animal_form.hbs");
+            return new ModelAndView(model, "animals.hbs");
         }, new HandlebarsTemplateEngine());
 
 
