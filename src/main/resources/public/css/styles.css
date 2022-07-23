@@ -31,3 +31,20 @@ thead{
     display:block;
     margin: auto;
 }
+
+
+.icon-small{
+    height: 50px;
+    display:block;
+    margin: auto;
+}
+.wildlife-menu{
+    display:inline-block;
+    font-size: xx-small;
+}
+
+.wildlife-small{
+    font-size: x-small;
+    color:#5a4008f6;
+    text-decoration: none;
+}
