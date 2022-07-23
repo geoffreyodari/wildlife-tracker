@@ -3,32 +3,30 @@ package models;
 import org.sql2o.Connection;
 
 import java.sql.Timestamp;
+import java.util.List;
+
 
 public class Sightings {
-     private Integer animalId;
-     private String rangerName;
+     private Integer animalid;
+     private String rangername;
      private String location;
      private Timestamp timespotted;
 
-     private String animalName;
      private int id;
 
-    public Sightings(int animalId,String rangerName,String location){
-        this.animalId = animalId;
-        this.rangerName = rangerName;
+    public Sightings(int animalid,String rangername,String location){
+        this.animalid = animalid;
+        this.rangername = rangername;
         this.location = location;
     }
 
-    public String getRangerName() {
-        return rangerName;
+    public String getRangername() {
+        return rangername;
     }
 
-    public String getAnimalName() {
-        return animalName;
-    }
 
-    public Integer getAnimalId() {
-        return animalId;
+    public Integer getAnimalid() {
+        return animalid;
     }
 
 
@@ -37,18 +35,20 @@ public class Sightings {
 
     }
 
+    public Timestamp getTimespotted() {
+        return timespotted;
+    }
+
     public Timestamp getTimeSpotted() {
         return timespotted;
     }
 
-    public static Sightings find(int id) {
+    public static List<Sightings> find(int id) {
+        String sql = "SELECT * FROM sightings WHERE animalId=:animalId";
         try(Connection con = DB.sql2o.open()) {
-            String sql = "SELECT * FROM sightings WHERE animalId=:animalId";
-            Sightings sighting = con.createQuery(sql)
-                    .addParameter("animalId", id)
-                    .throwOnMappingFailure(false)
-                    .executeAndFetchFirst(Sightings.class);
-            return sighting;
+            return con.createQuery(sql)
+                    .addParameter("animalId",id)
+                    .executeAndFetch(Sightings.class);
         }
     }
 
@@ -57,8 +57,8 @@ public class Sightings {
         try(Connection con = DB.sql2o.open()) {
             String sql = "INSERT INTO sightings  (animalId, rangername, location, timespotted) VALUES (:animalId, :rangername,:location ,now())";
             this.id = (int) con.createQuery(sql, true)
-                    .addParameter("animalId", this.animalId)
-                    .addParameter("rangername", this.rangerName)
+                    .addParameter("animalId", this.animalid)
+                    .addParameter("rangername", this.rangername)
                     .addParameter("location", this.location)
                     .throwOnMappingFailure(false)
                     .executeUpdate()

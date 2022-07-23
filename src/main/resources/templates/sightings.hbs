@@ -1,0 +1,30 @@
+{{#partial "content"}}
+  <section class="row lists-padding">
+    <div class="col-8 mx-auto">
+      <h5 class="display-6">Sightings</h5>
+        <p class="lead">{{name}}</p>
+        <p class="lead">{{id}}</p>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>id</th>
+            <th>Location</th>
+            <th>Timestamp</th>
+            <th>Recorded by</th>
+          </tr>
+        </thead>
+        <tbody>
+          {{#each sighting}}
+          <tr>
+            <td>{{animalid}}</td>
+            <td>{{location}}</td>
+            <td>{{timespotted}}</td>
+            <td>{{rangername}}</td>
+          </tr>
+          {{/each}}
+        </tbody>
+      </table>
+    </div> 
+</section>
+{{/partial}}
+{{> layout.hbs}}

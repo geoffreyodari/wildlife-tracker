@@ -26,7 +26,6 @@ public class EndangeredAnimal extends Animal implements DatabaseManagement {
 
 
 
-
     @Override
     public void save() {
         try(Connection con = DB.sql2o.open()) {

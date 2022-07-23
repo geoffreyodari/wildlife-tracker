@@ -1,0 +1,41 @@
+{{#partial "content"}}
+<section class="row lists-padding">
+    <div class="col-8 mx-auto">
+        {{#if exception}}
+            <h5 class="display-6">{{exception}} {{type}}</h5>
+        {{else}}
+            <h5 class="display-6">{{type}} Animals</h5>
+            {{#if animals}}
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>id</th>
+                        <th>Name</th>
+                        <th>Health</th>
+                        <th>Age</th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {{#each animals}}
+                        <tr>
+                            <td>{{id}}</td>
+                            <td>{{name}}</td>
+                            <td>{{#if health}}{{health}}{{else}}-{{/if}}</td>
+                            <td>{{#if age}}{{age}}{{else}}-{{/if}}</td>
+                            <td><a href="/view_sightings?name={{name}}&id={{id}}">sightings</a></td>
+                            <td><a href="/new_sighting?name={{name}}&id={{id}}">new sighting</a></td>
+                        </tr>
+                    {{/each}}
+                    </tbody>
+                </table>
+            {{else}}
+                No {{type}} found
+            {{/if}}
+        {{/if}}
+
+    </div> 
+</section>
+{{/partial}}
+{{> layout.hbs}}
