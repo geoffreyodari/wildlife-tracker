@@ -13,7 +13,8 @@
                         <th>Name</th>
                         <th>Health</th>
                         <th>Age</th>
-                        <th>Recorded by</th>
+                        <th></th>
+                        <th></th>
                     </tr>
                     </thead>
                     <tbody>
@@ -23,7 +24,8 @@
                             <td>{{name}}</td>
                             <td>{{#if health}}{{health}}{{else}}-{{/if}}</td>
                             <td>{{#if age}}{{age}}{{else}}-{{/if}}</td>
-                            <td>{{rangerName}}</td>
+                            <td><a href="/view_sightings?name={{name}}&id={{id}}">sightings</a></td>
+                            <td><a href="/new_sighting?name={{name}}&id={{id}}">new sighting</a></td>
                         </tr>
                     {{/each}}
                     </tbody>

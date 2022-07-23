@@ -70,7 +70,6 @@ public class App {
         //view animals list
         get("/view_animals", (request, response) -> {
             String type = request.queryParams("type");
-            System.out.println(type);
             Map  <Object,Object> model = new HashMap<>();
             if(type.equals("endangered")){
                 List allEndangeredAnimals = EndangeredAnimal.all();
@@ -92,17 +91,41 @@ public class App {
 
         //sightings form
         get("/new_sighting", (request, response) -> {
-            return new ModelAndView(new HashMap(), "sightings_form.hbs");
+            String id = request.queryParams("id");
+            String name = request.queryParams("name");
+            Map  <Object,Object> model = new HashMap<>();
+            model.put("name",name);
+            model.put("id",id);
+            return new ModelAndView(model, "sightings_form.hbs");
         }, new HandlebarsTemplateEngine());
 
         //sightings form
         post("/new_sighting", (request, response) -> {
-            return new ModelAndView(new HashMap(), "sightings_form.hbs");
+            String id = request.queryParams("id");
+            String name = request.queryParams("name");
+            String location = request.queryParams("location");
+            Integer intId = Integer.parseInt(id);
+            Map  <Object,Object> model = new HashMap<>();
+            Sightings sighting = new Sightings(intId, "geoffrey",location);
+            sighting.save();
+            List sightingsById = Sightings.find(intId);
+            model.put("sighting",sightingsById);
+            model.put("name",name);
+            model.put("id",id);
+            return new ModelAndView(model, "sightings.hbs");
         }, new HandlebarsTemplateEngine());
 
         //view sightings
         get("/view_sightings", (request, response) ->{
-            return new ModelAndView(new HashMap(), "sightings.hbs");
+            String id = request.queryParams("id");
+            String name = request.queryParams("name");
+            Integer intId = Integer.parseInt(id);
+            Map  <Object,Object> model = new HashMap<>();
+            List sightingsById = Sightings.find(intId);
+            model.put("sighting",sightingsById);
+            model.put("name",name);
+            model.put("id",id);
+            return new ModelAndView(model, "sightings.hbs");
         }, new HandlebarsTemplateEngine());
 
     }

@@ -2,6 +2,8 @@
   <section class="row lists-padding">
     <div class="col-8 mx-auto">
       <h5 class="display-6">Sightings</h5>
+        <p class="lead">{{name}}</p>
+        <p class="lead">{{id}}</p>
       <table class="table">
         <thead>
           <tr>
@@ -12,26 +14,14 @@
           </tr>
         </thead>
         <tbody>
-          {{#Each sighting}}
+          {{#each sighting}}
           <tr>
-            <td>{{id}}</td>
+            <td>{{animalid}}</td>
             <td>{{location}}</td>
-            <td>{{timestamp}}</td>
+            <td>{{timespotted}}</td>
             <td>{{rangername}}</td>
           </tr>
-          {{/Each}}
-          <tr>
-            <td>1</td>
-            <td>3rd Quadrant</td>
-            <td>3:00pm</td>
-            <td>Mark</td>
-          </tr>
-          <tr>
-            <td>1</td>
-            <td>3rd Quadrant</td>
-            <td>6:00pm</td>
-            <td>Mathew</td>
-          </tr>
+          {{/each}}
         </tbody>
       </table>
     </div> 
