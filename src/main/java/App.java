@@ -63,7 +63,7 @@ public class App {
             sighting.save();
             Map  <Object,Object> model = new HashMap<>();
             model.put("abundantAnimal",AbundantAnimal.all());
-            return new ModelAndView(model, "animals.hbs");
+            return new ModelAndView(model, "success.hbs");
         }, new HandlebarsTemplateEngine());
 
 

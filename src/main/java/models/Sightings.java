@@ -18,7 +18,7 @@ public class Sightings{
 
      private String type;
 
-     private int age;
+     private String age;
 
      private int id;
 
