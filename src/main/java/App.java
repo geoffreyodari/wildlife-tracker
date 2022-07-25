@@ -115,7 +115,7 @@ public class App {
             return new ModelAndView(model, "sightings.hbs");
         }, new HandlebarsTemplateEngine());
 
-        //view sightings
+        //view sightings by id
         get("/view_sightings", (request, response) ->{
             String id = request.queryParams("id");
             String name = request.queryParams("name");
@@ -126,6 +126,19 @@ public class App {
             model.put("name",name);
             model.put("id",id);
             return new ModelAndView(model, "sightings.hbs");
+        }, new HandlebarsTemplateEngine());
+
+        //view all sightings
+        get("/view_all_sightings", (request, response) ->{
+            Map  <Object,Object> model = new HashMap<>();
+            List allSightings = Sightings.all();
+            model.put("sighting",allSightings);
+            return new ModelAndView(model, "sightings.hbs");
+        }, new HandlebarsTemplateEngine());
+
+        //view about
+        get("/about", (request, response) ->{
+            return new ModelAndView(new HashMap(), "about.hbs");
         }, new HandlebarsTemplateEngine());
 
     }
