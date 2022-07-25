@@ -128,5 +128,10 @@ public class App {
             return new ModelAndView(model, "sightings.hbs");
         }, new HandlebarsTemplateEngine());
 
+        //view sightings
+        get("/about", (request, response) ->{
+            return new ModelAndView(new HashMap(), "about.hbs");
+        }, new HandlebarsTemplateEngine());
+
     }
 }

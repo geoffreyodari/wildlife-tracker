@@ -5,6 +5,20 @@
             <h5 class="display-6">{{exception}} {{type}}</h5>
         {{else}}
             <h5 class="display-6">{{type}} Animals</h5>
+            <div>
+                <div class="wildlife-menu text-center">
+                    <a href="/new_abundant_animal" class="wildlife-small">
+                        <img src="/img/add_abundant.png" class="icon-small " alt="">
+                        Abundant
+                    </a>
+                </div>
+                <div class="wildlife-menu">
+                    <a href="/new_endangered_animal" class="wildlife-small">
+                        <img src="/img/add_endangered.png" class="icon-small" alt="">
+                        Endangered
+                    </a>
+                </div>
+            </div>
             {{#if animals}}
                 <table class="table">
                     <thead>

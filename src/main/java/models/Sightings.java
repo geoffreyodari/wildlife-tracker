@@ -6,11 +6,19 @@ import java.sql.Timestamp;
 import java.util.List;
 
 
-public class Sightings {
+public class Sightings{
      private Integer animalid;
      private String rangername;
      private String location;
      private Timestamp timespotted;
+
+     private String name;
+
+     private String health;
+
+     private String type;
+
+     private int age;
 
      private int id;
 
@@ -29,6 +37,13 @@ public class Sightings {
         return animalid;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public String getHealth() {
+        return health;
+    }
 
     public String getLocation() {
         return location;
@@ -44,7 +59,7 @@ public class Sightings {
     }
 
     public static List<Sightings> find(int id) {
-        String sql = "SELECT * FROM sightings WHERE animalId=:animalId";
+        String sql = "SELECT * FROM sightings JOIN animals ON(sightings.animalId=animals.id) WHERE sightings.animalId=:animalId";
         try(Connection con = DB.sql2o.open()) {
             return con.createQuery(sql)
                     .addParameter("animalId",id)
