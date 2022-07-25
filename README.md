@@ -1,8 +1,11 @@
-# wildlife-tracker
+# Wildlife Tracker
 
 An application to help rangers track wildlife sightings.
 
-## Installation
+### Author
+Geoffrey Odari
+
+### Installation
 
 * System Requirements
 Openjdk 18.0.1 
