@@ -67,6 +67,14 @@ public class Sightings{
         }
     }
 
+    public static List<Sightings> all() {
+        String sql = "SELECT * FROM sightings JOIN animals ON(sightings.animalId=animals.id)";
+        try(Connection con = DB.sql2o.open()) {
+            return con.createQuery(sql)
+                    .executeAndFetch(Sightings.class);
+        }
+    }
+
 
     public void save() {
         try(Connection con = DB.sql2o.open()) {
