@@ -2,8 +2,11 @@
   <section class="row lists-padding">
     <div class="col-8 mx-auto">
       <h5 class="display-6">Sightings</h5>
-        <p class="lead">{{name}}</p>
-        <p class="lead">{{id}}</p>
+        {{#if name}}
+            <p class="lead">{{name}}</p>
+            <p class="lead">{{id}}</p>
+        {{/if}}
+
       <table class="table">
         <thead>
           <tr>
