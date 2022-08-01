@@ -29,12 +29,22 @@ wildlife_tracker=#CREATE TABLE sightings (id serial PRIMARY KEY, animalId int, r
 wildlife_tracker=#DROP DATABASE wildlife_tracker_test;
 wildlife_tracker=#CREATE DATABASE wildlife_tracker_test WITH TEMPLATE wildlife_tracker;
 ```
-* To access the application 
+### To access the application 
 Open your Browser and enter the link http://localhost:4567
   ![image](https://drive.google.com/uc?export=view&id=1euAl99FEDHVamFNLjXKX06Yo6w-yZbnl)
-* Adding an animal
+
+### Viewing animals
+  ![image](https://drive.google.com/uc?export=view&id=1E-ZaeU-LrzqUUjVEQ1YFCHgTQATJBDk8)
+
   ![image](https://drive.google.com/uc?export=view&id=1uKZ1UJPxDgS3Uh458EJJOdgb4ezzhNji)
-* Recording sightings
-  ![image](https://drive.google.com/uc?export=view&id=17u79--uQLaX5CpnCurOCcz1NgpFpWAjM)
-* View all sightings
-  ![image](https://drive.google.com/uc?export=view&id=19fVIpQjDDaQMwPEWVbdhBpWpCSUvXXCH)
+
+  ![image](https://drive.google.com/uc?export=view&id=18ZSIZvk1qaJrwU8IlVvVMrjkMHpmh3-G)
+
+### Recording sightings
+![image](https://drive.google.com/uc?export=view&id=17u79--uQLaX5CpnCurOCcz1NgpFpWAjM)
+
+### View all sightings
+
+![image](https://drive.google.com/uc?export=view&id=1-s4_sDQV4DK8CZPOATHK38HY0M3Jy3bZ)
+
+ ![image](https://drive.google.com/uc?export=view&id=1sHKSNgFLI04qzBRjwLGo5LLJ-93MLXWV)
