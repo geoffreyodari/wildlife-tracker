@@ -31,7 +31,10 @@ wildlife_tracker=#CREATE DATABASE wildlife_tracker_test WITH TEMPLATE wildlife_t
 ```
 * To access the application 
 Open your Browser and enter the link http://localhost:4567
-
-* Adding an animal 
+  ![image](https://drive.google.com/uc?export=view&id=1euAl99FEDHVamFNLjXKX06Yo6w-yZbnl)
+* Adding an animal
+  ![image](https://drive.google.com/uc?export=view&id=1uKZ1UJPxDgS3Uh458EJJOdgb4ezzhNji)
 * Recording sightings
+  ![image](https://drive.google.com/uc?export=view&id=17u79--uQLaX5CpnCurOCcz1NgpFpWAjM)
 * View all sightings
+  ![image](https://drive.google.com/uc?export=view&id=19fVIpQjDDaQMwPEWVbdhBpWpCSUvXXCH)
