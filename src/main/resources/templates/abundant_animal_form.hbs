@@ -2,14 +2,20 @@
 <section class="row p-3 d-flex align-items-center  h-100">
 <div class="col-lg-4 col-sm-12 mx-auto">
     <h5 class="display-6">Animal Sightings</h5>
-    <form method="post" action="/new_abundant_animal">
+    <form method="post" action="/new_abundant_animal" class="row g-3 needs-validation" >
     <div class="mb-3">
         <label for="" class="form-label">Name</label>
-        <input type="text" name="name" id="" class="form-control">
+        <input type="text" name="name" id="" class="form-control" required>
+        <div class="valid-feedback">
+            Looks good!
+        </div>
     </div>
     <div class="mb-3">
         <label for="" class="form-label">First Sighting: Location</label>
-        <input type="text" name="location" id="" class="form-control">
+        <input type="text" name="location" id="" class="form-control" required>
+        <div class="valid-feedback">
+            Looks good!
+        </div>
     </div>
     <div class="mb-3 text-center">
         <input type="submit" value="Submit" class="btn btn-wildlife">
